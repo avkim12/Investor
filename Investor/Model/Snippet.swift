@@ -2,17 +2,46 @@
 //  Snippet.swift
 //  Investor
 //
-//  Created by Alla Kim on 28.03.2021.
+//  Created by chiwawa on 28.03.2021.
 //
 
 import UIKit
 
-class Snippet: Decodable {
+struct JSONStructure: Codable {
     
-    var logo: String?
-    var ticker: String?
-//    var isFavourite: Bool?
-    var name: String?
-    var price: String?
-    var delta: String?
+    let snippets: [Snippet]
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case snippets = "quotes"
+    }
+}
+
+struct Snippet: Codable {
+    
+    var symbol: String?
+    var longName: String?
+    var regularMarketPrice: Double?
+    var regularMarketChange: Double?
+    var regularMarketChangePercent: Double?
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case symbol
+        case longName
+        case regularMarketPrice
+        case regularMarketChange
+        case regularMarketChangePercent
+    }
+    
+    init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        symbol = try container.decode(String.self, forKey: .symbol)
+        longName = try container.decode(String.self, forKey: .longName)
+        regularMarketPrice = try container.decode(Double.self, forKey: .regularMarketPrice)
+        regularMarketChange = try container.decode(Double.self, forKey: .regularMarketChange)
+        regularMarketChangePercent = try container.decode(Double.self, forKey: .regularMarketChangePercent)
+    }
 }

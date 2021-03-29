@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Investor
 //
-//  Created by Alla Kim on 27.03.2021.
+//  Created by chiwawa on 27.03.2021.
 //
 
 import UIKit
