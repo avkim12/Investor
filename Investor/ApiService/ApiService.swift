@@ -8,13 +8,13 @@
 import UIKit
 
 
-class ApiService: NSObject {
+class ApiService {
     
     static let shared = ApiService()
     
-    func fetchSnippets(completion: @escaping (JSONStructure) -> ()) {
+    func fetchSnippets(completion: @escaping ([Snippet]) -> ()) {
         
-        guard let url = URL(string: "https://mboum.com/api/v1/co/collections/?list=most_actives&start=1&apikey=demo") else {return}
+        guard let url = URL(string: "https://mboum.com/api/v1/co/collections/?list=most_actives&start=1&apikey=demo") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
@@ -26,7 +26,7 @@ class ApiService: NSObject {
             if let data = data {
                 if let jsonStructure = try? JSONDecoder().decode(JSONStructure.self, from: data) {
                     DispatchQueue.main.async {
-                        completion(jsonStructure)
+                        completion(jsonStructure.snippets)
                     }
                     
                 }

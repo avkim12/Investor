@@ -11,6 +11,7 @@
         <!--Favourites View Controller-->
         <scene sceneID="fHW-Fu-NIc">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eGK-c3-I8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="zab-E4-b2k" customClass="FavouritesViewController" customModule="Investor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wg4-ql-d9O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -34,10 +35,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="IVT-5H-MWt">
-                                                    <rect key="frame" x="108" y="10" width="113.5" height="80"/>
+                                                    <rect key="frame" x="108" y="10" width="90" height="80"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FmH-n1-0bq">
-                                                            <rect key="frame" x="0.0" y="0.0" width="113.5" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="88.5" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBg-oi-axs">
                                                                     <rect key="frame" x="0.0" y="0.0" width="53.5" height="40"/>
@@ -50,12 +51,12 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TF-Z9-m1e">
-                                                                    <rect key="frame" x="63.5" y="7.5" width="50" height="25"/>
+                                                                    <rect key="frame" x="63.5" y="7.5" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="Rwp-ea-gR2"/>
                                                                         <constraint firstAttribute="height" constant="25" id="pt9-Io-UeK"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Fav" image="star.fill" catalog="system"/>
+                                                                    <state key="normal" image="star.fill" catalog="system"/>
                                                                     <connections>
                                                                         <action selector="favouriteButton:" destination="UJ4-Nb-NcS" eventType="touchUpInside" id="Frw-7i-AwY"/>
                                                                     </connections>
@@ -138,7 +139,6 @@
                         <outlet property="tableView" destination="FiU-rr-vD0" id="P6v-EK-FHr"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eGK-c3-I8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="453.62318840579712" y="1345.9821428571429"/>
         </scene>
@@ -168,10 +168,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Mtp-iK-vhN">
-                                                    <rect key="frame" x="108" y="10" width="113.5" height="80"/>
+                                                    <rect key="frame" x="108" y="10" width="90" height="80"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NQ2-h6-khu">
-                                                            <rect key="frame" x="0.0" y="0.0" width="113.5" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="88.5" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IV1-97-eHO">
                                                                     <rect key="frame" x="0.0" y="0.0" width="53.5" height="40"/>
@@ -184,12 +184,12 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awe-4Q-9Gw">
-                                                                    <rect key="frame" x="63.5" y="7.5" width="50" height="25"/>
+                                                                    <rect key="frame" x="63.5" y="7.5" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="Gac-YN-wyl"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="MnY-tL-ggZ"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Fav" image="star" catalog="system"/>
+                                                                    <state key="normal" image="star" catalog="system"/>
                                                                     <connections>
                                                                         <action selector="favouriteButton:" destination="0go-v6-F0g" eventType="touchUpInside" id="iHU-W2-zIk"/>
                                                                     </connections>

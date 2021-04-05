@@ -19,11 +19,11 @@ struct JSONStructure: Codable {
 
 struct Snippet: Codable {
     
-    var symbol: String?
-    var longName: String?
-    var regularMarketPrice: Double?
-    var regularMarketChange: Double?
-    var regularMarketChangePercent: Double?
+    var symbol: String
+    var longName: String
+    var regularMarketPrice: Double
+    var regularMarketChange: Double
+    var regularMarketChangePercent: Double
     
     private enum CodingKeys: String, CodingKey {
         

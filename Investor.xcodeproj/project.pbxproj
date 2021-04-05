@@ -17,6 +17,7 @@
 		FE882669260FE56600BB62C5 /* SnippetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE882668260FE56600BB62C5 /* SnippetCell.swift */; };
 		FECE8FDF2610907100E21FA2 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE8FDE2610907100E21FA2 /* Snippet.swift */; };
 		FECE8FE52610973E00E21FA2 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE8FE42610973E00E21FA2 /* ApiService.swift */; };
+		FEECD0A2261A0B4E00307502 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEECD0A1261A0B4E00307502 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		FE882668260FE56600BB62C5 /* SnippetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCell.swift; sourceTree = "<group>"; };
 		FECE8FDE2610907100E21FA2 /* Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		FECE8FE42610973E00E21FA2 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		FEECD0A1261A0B4E00307502 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				FE882668260FE56600BB62C5 /* SnippetCell.swift */,
+				FEECD0A1261A0B4E00307502 /* ImageCache.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE882665260FDD9B00BB62C5 /* FavouritesViewController.swift in Sources */,
+				FEECD0A2261A0B4E00307502 /* ImageCache.swift in Sources */,
 				FE882662260FDD8800BB62C5 /* StocksViewController.swift in Sources */,
 				FE882669260FE56600BB62C5 /* SnippetCell.swift in Sources */,
 				FECE8FDF2610907100E21FA2 /* Snippet.swift in Sources */,

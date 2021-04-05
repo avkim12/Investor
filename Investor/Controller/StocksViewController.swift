@@ -11,12 +11,23 @@ class StocksViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var filteredSnippets = [Snippet]()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+//        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
     var snippets: [Snippet]?
     
     func fetchSnippets() {
         
-        ApiService().fetchSnippets { (jsonStructure: JSONStructure) in
-            self.snippets = jsonStructure.snippets
+        ApiService().fetchSnippets { (snippets: [Snippet]) in
+            self.snippets = snippets
             DispatchQueue.main.async {
                 self.tableView?.reloadData()
             }
@@ -27,35 +38,57 @@ class StocksViewController: UIViewController {
         super.viewDidLoad()
         
         fetchSnippets()
-        
         setupSearchBar()
     }
     
     private func setupSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Find company or ticker"
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
     }
 }
 
-extension StocksViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+extension StocksViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredSnippets.count
+        }
         return 25
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SnippetCell
-        cell.snippet = snippets?[indexPath.item]
+        
+        if isFiltering {
+            cell.snippet = filteredSnippets[indexPath.row]
+        } else {
+            cell.snippet = snippets?[indexPath.row]
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+}
+
+extension StocksViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
         
+        filteredSnippets = snippets!.filter({ (snippet: Snippet) -> Bool in
+            return (snippet.longName.lowercased().contains(searchText.lowercased()) || snippet.symbol.lowercased().contains(searchText.lowercased()))
+        })
+        
+        tableView.reloadData()
     }
 }
