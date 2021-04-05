@@ -9,7 +9,7 @@ import UIKit
 
 struct JSONStructure: Codable {
     
-    let snippets: [Snippet]
+    let snippets: [Snippet]?
     
     private enum CodingKeys: String, CodingKey {
         
@@ -19,23 +19,15 @@ struct JSONStructure: Codable {
 
 struct Snippet: Codable {
     
-    var symbol: String
-    var longName: String
-    var regularMarketPrice: Double
-    var regularMarketChange: Double
-    var regularMarketChangePercent: Double
-    
-    private enum CodingKeys: String, CodingKey {
-        
-        case symbol
-        case longName
-        case regularMarketPrice
-        case regularMarketChange
-        case regularMarketChangePercent
-    }
+    var symbol: String?
+    var longName: String?
+    var regularMarketPrice: Double?
+    var regularMarketChange: Double?
+    var regularMarketChangePercent: Double?
+    var isFavorite: Bool = false
     
     init(from decoder: Decoder) throws {
-
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         symbol = try container.decode(String.self, forKey: .symbol)

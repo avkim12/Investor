@@ -56,9 +56,10 @@
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="Rwp-ea-gR2"/>
                                                                         <constraint firstAttribute="height" constant="25" id="pt9-Io-UeK"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="star.fill" catalog="system"/>
+                                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" image="fav_star"/>
                                                                     <connections>
-                                                                        <action selector="favouriteButton:" destination="UJ4-Nb-NcS" eventType="touchUpInside" id="Frw-7i-AwY"/>
+                                                                        <action selector="markAsFavourite:" destination="UJ4-Nb-NcS" eventType="touchUpInside" id="Frw-7i-AwY"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -113,6 +114,7 @@
                                         <connections>
                                             <outlet property="companyNameLabel" destination="XFB-e7-AvS" id="4aV-mM-7FD"/>
                                             <outlet property="deltaLabel" destination="WdG-Ud-RmO" id="C6I-vk-DA6"/>
+                                            <outlet property="favouriteButton" destination="2TF-Z9-m1e" id="eWO-k3-RwY"/>
                                             <outlet property="logoImageView" destination="Ce6-SO-xg8" id="vY0-M3-Oth"/>
                                             <outlet property="priceLabel" destination="g5Y-u7-sOF" id="fIG-8a-wzJ"/>
                                             <outlet property="tickerLabel" destination="fBg-oi-axs" id="dTB-fI-JKK"/>
@@ -189,9 +191,10 @@
                                                                         <constraint firstAttribute="height" constant="25" id="Gac-YN-wyl"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="MnY-tL-ggZ"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="star" catalog="system"/>
+                                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" image="fav_star"/>
                                                                     <connections>
-                                                                        <action selector="favouriteButton:" destination="0go-v6-F0g" eventType="touchUpInside" id="iHU-W2-zIk"/>
+                                                                        <action selector="markAsFavourite:" destination="0go-v6-F0g" eventType="touchUpInside" id="iHU-W2-zIk"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -246,6 +249,7 @@
                                         <connections>
                                             <outlet property="companyNameLabel" destination="JGR-k2-1pT" id="G85-Zj-n8l"/>
                                             <outlet property="deltaLabel" destination="IO7-Pi-V2e" id="bFA-YT-gwu"/>
+                                            <outlet property="favouriteButton" destination="Awe-4Q-9Gw" id="e5l-Wj-tMf"/>
                                             <outlet property="logoImageView" destination="ki1-hw-xBI" id="4e3-JQ-L4N"/>
                                             <outlet property="priceLabel" destination="nsv-Mv-vfm" id="DF1-wA-rKb"/>
                                             <outlet property="tickerLabel" destination="IV1-97-eHO" id="pVv-RP-EV4"/>
@@ -337,7 +341,7 @@
     </scenes>
     <resources>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
-        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="fav_star" width="25" height="23.5"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

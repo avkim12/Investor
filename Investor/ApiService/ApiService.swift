@@ -14,23 +14,32 @@ class ApiService {
     
     func fetchSnippets(completion: @escaping ([Snippet]) -> ()) {
         
-        guard let url = URL(string: "https://mboum.com/api/v1/co/collections/?list=most_actives&start=1&apikey=demo") else { return }
+        let urlString = "https://mboum.com/api/v1/co/collections/?list=most_actives&start=1&apikey=demo"
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            if error != nil {
-                print(error ?? "")
+            if let error = error {
+                print("Error with fetching snippets: \(error)")
                 return
             }
             
-            if let data = data {
-                if let jsonStructure = try? JSONDecoder().decode(JSONStructure.self, from: data) {
-                    DispatchQueue.main.async {
-                        completion(jsonStructure.snippets)
-                    }
-                    
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Error with the response, unexpected status code: \(String(describing: response))")
+                return
+            }
+            
+            if let data = data,
+               let jsonStructure = try? JSONDecoder().decode(JSONStructure.self, from: data),
+               let snippets = jsonStructure.snippets {
+                
+                DispatchQueue.main.async {
+                    completion(snippets)
                 }
             }
-        }.resume()
+        }
+        task.resume()
     }
 }

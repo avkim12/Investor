@@ -2,7 +2,7 @@
 //  ImageCache.swift
 //  Investor
 //
-//  Created by Alla Kim on 04.04.2021.
+//  Created by chiwawa on 04.04.2021.
 //
 
 import UIKit
@@ -22,9 +22,12 @@ extension UIImageView {
         image = nil
         
         if let imageFromCache = imageCache.object(forKey: urlString as NSString) {
+            
             self.image = imageFromCache
             return
+            
         } else {
+            
             self.image = #imageLiteral(resourceName: "photo3167064088017741762")
         }
         
@@ -39,6 +42,7 @@ extension UIImageView {
                 guard let imageToCache = UIImage(data: data!) else { return }
                 
                 if imageUrlString == urlString {
+                    
                     self.image = imageToCache
                 }
                 
@@ -47,5 +51,4 @@ extension UIImageView {
             
         }).resume()
     }
-
 }

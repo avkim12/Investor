@@ -11,20 +11,21 @@ class StocksViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var filteredSnippets = [Snippet]()
     private let searchController = UISearchController(searchResultsController: nil)
+    
     private var searchBarIsEmpty: Bool {
-        guard let text = searchController.searchBar.text else { return false }
-        return text.isEmpty
-//        return searchController.searchBar.text?.isEmpty ?? true
+        return searchController.searchBar.text?.isEmpty ?? true
     }
+    
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
     
-    var snippets: [Snippet]?
+    private var filteredSnippets = [Snippet]()
     
-    func fetchSnippets() {
+    private var snippets: [Snippet]?
+    
+    private func fetchSnippets() {
         
         ApiService().fetchSnippets { (snippets: [Snippet]) in
             self.snippets = snippets
@@ -42,10 +43,11 @@ class StocksViewController: UIViewController {
     }
     
     private func setupSearchBar() {
+        
         self.navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Find company or ticker"
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
     }
 }
@@ -68,7 +70,6 @@ extension StocksViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cell.snippet = snippets?[indexPath.row]
         }
-        
         return cell
     }
     
@@ -80,15 +81,25 @@ extension StocksViewController: UITableViewDataSource, UITableViewDelegate {
 extension StocksViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        
         filterContentForSearchText(searchController.searchBar.text!)
     }
     
     private func filterContentForSearchText(_ searchText: String) {
         
-        filteredSnippets = snippets!.filter({ (snippet: Snippet) -> Bool in
-            return (snippet.longName.lowercased().contains(searchText.lowercased()) || snippet.symbol.lowercased().contains(searchText.lowercased()))
-        })
-        
+        if let snippets = snippets {
+            
+            filteredSnippets = snippets.filter({ (snippet: Snippet) -> Bool in
+                
+                if let symbol = snippet.symbol,
+                   let longName = snippet.longName {
+                    
+                    return symbol.lowercased().contains(searchText.lowercased()) ||
+                            longName.lowercased().contains(searchText.lowercased())
+                }
+                return false
+            })
+        }
         tableView.reloadData()
     }
 }

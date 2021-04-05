@@ -14,93 +14,79 @@ class SnippetCell: UITableViewCell {
     @IBOutlet weak var companyNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var deltaLabel: UILabel!
-    @IBAction func favouriteButton(_ sender: UIButton) {
+    @IBOutlet weak var favouriteButton: UIButton!
+    @IBAction func markAsFavourite(_ sender: UIButton) {
         
-    }
-    
-    
-    
-    var snippet: Snippet? {
-        didSet {
-            
-            if snippet?.symbol != nil {
-
-                let urlString = "https://finnhub.io/api/logo?symbol=\(String(describing: snippet!.symbol))"
-                
-                logoImageView.loadImageUsingUrlString(urlString: urlString)
-                
-//                func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-//                    URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-//                }
-//                
-//                func downloadImage(from url: URL) {
-//                    getData(from: url) { data, response, error in
-//                        guard let data = data, error == nil else { return }
-//                        print("Download Finished")
-//                        DispatchQueue.main.async() { [weak self] in
-//                            self?.logoImageView.image = UIImage(data: data)
-//                        }
-//                    }
-//                }
-//                
-//                let url = URL(string: "https://finnhub.io/api/logo?symbol=\(String(describing: snippet!.symbol!))")!
-//                downloadImage(from: url)
-            }
-            
-            if snippet?.symbol != nil {
-                tickerLabel.text = snippet?.symbol
-            }
-            
-            if snippet?.longName != nil {
-                companyNameLabel.text = snippet?.longName
-            }
-            
-            if snippet?.regularMarketPrice != nil {
-                priceLabel.text = "$\(String(snippet!.regularMarketPrice))"
-            }
-            
-            if snippet?.regularMarketChange != nil && snippet?.regularMarketChangePercent != nil {
-                let change = String(format: "%.2f", snippet!.regularMarketChange)
-                let changePercent = String(format: "%.2f", snippet!.regularMarketChangePercent)
-                deltaLabel.text = "$\(change) (\(changePercent)%)"
-            }
+        if let isFavourite = snippet?.isFavorite {
+            snippet!.isFavorite = !isFavourite
         }
     }
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//
-//        setupLogoImageView()
-//        setupTickerLabel()
-//        setupFavouriteButton()
-//        setupCompanyNameLabel()
-//        setupCurrentPriceLabel()
-//        setupDayDeltaLabel()
-//    }
-//
-//    private func setupLogoImageView() {
-//
-//        logoImageView.layer.cornerRadius = 15
-//    }
-//
-//    private func setupTickerLabel() {
-//
-//    }
-//
-//    private func setupFavouriteButton() {
-//
-//    }
-//
-//    private func setupCompanyNameLabel() {
-//
-//    }
-//
-//    private func setupCurrentPriceLabel() {
-//
-//    }
-//
-//    private func setupDayDeltaLabel() {
-//
-//    }
+    var snippet: Snippet? {
+        
+        didSet {
+            
+            setupLogoImageView()
+            setupTickerLabel()
+            setupFavouriteButton()
+            setupCompanyNameLabel()
+            setupCurrentPriceLabel()
+            setupDayDeltaLabel()
+        }
+    }
+    
+    private func setupLogoImageView() {
+        
+        if let symbol = snippet?.symbol {
+            
+            let urlString = "https://finnhub.io/api/logo?symbol=\(symbol)"
+            
+            logoImageView.loadImageUsingUrlString(urlString: urlString)
+            logoImageView.layer.cornerRadius = 15
+        }
+    }
+    
+    private func setupTickerLabel() {
+        
+        if let symbol = snippet?.symbol {
+            
+            tickerLabel.text = symbol
+        }
+    }
+    
+    private func setupFavouriteButton() {
+        
+        if let isFavorite = snippet?.isFavorite,
+           let favouriteButton = favouriteButton {
+            favouriteButton.setImage(#imageLiteral(resourceName: "fav_star"), for: .normal)
+            favouriteButton.tintColor = isFavorite ? .systemYellow : .lightGray
+        }
+    }
+    
+    private func setupCompanyNameLabel() {
+        
+        if let longName = snippet?.longName {
+            companyNameLabel.text = longName
+        }
+    }
+    
+    private func setupCurrentPriceLabel() {
+        
+        if let regularMarketPrice = snippet?.regularMarketPrice {
+            priceLabel.text = "$\(String(format: "%.2f", regularMarketPrice))"
+        }
+    }
+    
+    private func setupDayDeltaLabel() {
+        
+        if let regularMarketChange = snippet?.regularMarketChange,
+           let regularMarketChangePercent = snippet?.regularMarketChangePercent {
+            
+            let change = String(format: "%.2f", regularMarketChange)
+            let changePercent = String(format: "%.2f", regularMarketChangePercent)
+            
+            deltaLabel.text = "$\(change) (\(changePercent)%)"
+        }
+    }
     
 }
