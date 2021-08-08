@@ -1,4 +1,4 @@
 # Investor
 📈 Stock Trading App
 
-https://user-images.githubusercontent.com/65310180/128632924-92053460-74ff-4d04-8dcd-eda9cf96c396.MP4
+![IMG_4985](https://user-images.githubusercontent.com/65310180/128633001-8aa45eee-bddf-4c28-adb9-8ff63fc60e42.gif)
